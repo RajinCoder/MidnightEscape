@@ -3,6 +3,12 @@
 # Ignore meta files in the root directory
 *.meta
 
+# Ignore imported assets
+-*Classic*64*Asset*Pack*0.6/
+Abandoned_Asylum/
+Models*pack*psx/
+RawWoodenFurnitureFree
+
 # Ignore hidden files
 .DS_Store
 .vscode/
