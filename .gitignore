@@ -1,7 +1,7 @@
-# This .gitignore file should be placed at the root of your Unity project directory
+ # This .gitignore file should be placed at the root of your Unity project directory
 
 # Ignore meta files in the root directory
-*.meta
+# *.meta
 
 # Ignore imported assets
 -*Classic*64*Asset*Pack*0.6/
@@ -68,9 +68,9 @@ ExportedObj/
 *.VC.db
 
 # Unity3D generated meta files
-*.pidb.meta
-*.pdb.meta
-*.mdb.meta
+# *.pidb.meta
+# *.pdb.meta
+# *.mdb.meta
 
 # Unity3D generated file on crash reports
 sysinfo.txt
