@@ -8,10 +8,17 @@ public class PlayerController : MonoBehaviour
     public float jumpHeight = 1;
     public float gravity = 9.81f;
     public float airControl = 1;
+    public AudioClip jumpSFX;
+    public AudioClip walkSFX;
+    public float walkSFXDelay = .7f;
+
 
     CharacterController controller;
     Vector3 input, moveDirection;
     float normalSpeed, boostSpeed;
+    float ogDelay;
+    float runDelay;
+    bool isPlayingWalkSFX = false;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +26,9 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         normalSpeed = moveSpeed;
         boostSpeed = moveSpeed * 1.45f;
+        ogDelay = walkSFXDelay;
+        runDelay = walkSFXDelay - .2f;
+
     }
 
     // Update is called once per frame
@@ -33,13 +43,20 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             moveSpeed = boostSpeed;
+            walkSFXDelay = runDelay;
         }
         else
         {
             moveSpeed = normalSpeed;
+            walkSFXDelay = ogDelay;
         }
 
         input *= moveSpeed;
+
+        if ((moveHorizontal != 0 || moveVertical != 0) && !isPlayingWalkSFX)
+        {
+            StartCoroutine(PlayWalkSFX());
+        }
 
         // Jump Control
         if (controller.isGrounded)
@@ -64,5 +81,13 @@ public class PlayerController : MonoBehaviour
         moveDirection.y -= gravity * Time.deltaTime;
 
         controller.Move(moveDirection * Time.deltaTime);
+    }
+
+    IEnumerator PlayWalkSFX()
+    {
+        isPlayingWalkSFX = true;
+        AudioSource.PlayClipAtPoint(walkSFX, new Vector3(transform.position.x, 1, transform.position.z));
+        yield return new WaitForSeconds(walkSFXDelay);
+        isPlayingWalkSFX = false;
     }
 }
