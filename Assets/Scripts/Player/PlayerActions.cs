@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerActions : MonoBehaviour
 {
+    public AudioClip doorOpenSFX;
+    public AudioClip doorCloseSFX;
 
     private Transform Camera;
 
@@ -44,11 +46,14 @@ public class PlayerActions : MonoBehaviour
                     Debug.Log("Open/Close Door");
                     if (!door.isOpen)
                     {
+                       
                         door.Open();
+                        AudioSource.PlayClipAtPoint(doorOpenSFX, transform.position);
                     }
                     else
                     {
                         door.Close();
+                        AudioSource.PlayClipAtPoint(doorCloseSFX, transform.position);
                     }
                 }
             }
