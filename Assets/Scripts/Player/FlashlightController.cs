@@ -8,7 +8,6 @@ public class FlashlightController : MonoBehaviour
     public float maxBrightness = 1;
     public float minBrightness = 0.1f;
     public float drainRate = 2;
-    public AudioClip flashSFX;
 
     Light light;
 
@@ -16,7 +15,6 @@ public class FlashlightController : MonoBehaviour
     void Start()
     {
         light = GetComponent<Light>();
-       
     }
 
     // Update is called once per frame
@@ -34,7 +32,6 @@ public class FlashlightController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
-            AudioSource.PlayClipAtPoint(flashSFX, transform.position);
             light.enabled = !light.enabled;
         }
     }

@@ -8,8 +8,6 @@ public class PlayerActions : MonoBehaviour
     private Transform Camera;
 
     private float maxUseDistance = 5f;
-    public AudioClip doorOpenSFX;
-    public AudioClip doorCloseSFX;
 
     // private LayerMask UseLayers;
 
@@ -46,12 +44,10 @@ public class PlayerActions : MonoBehaviour
                     Debug.Log("Open/Close Door");
                     if (!door.isOpen)
                     {
-                        AudioSource.PlayClipAtPoint(doorOpenSFX, transform.position);
                         door.Open();
                     }
                     else
                     {
-                        AudioSource.PlayClipAtPoint(doorCloseSFX, transform.position);
                         door.Close();
                     }
                 }
