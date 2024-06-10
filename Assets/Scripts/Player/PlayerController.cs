@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     public float airControl = 1;
     public AudioClip jumpSFX;
     public AudioClip walkSFX;
+    public AudioClip heavyBreathingSFX;
+    public AudioClip regularBreathingSFX;
     public float walkSFXDelay = .7f;
 
 
@@ -19,15 +21,19 @@ public class PlayerController : MonoBehaviour
     float ogDelay;
     float runDelay;
     bool isPlayingWalkSFX = false;
+    float timeRunning;
+    AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        audioSource = GetComponent<AudioSource>();
         normalSpeed = moveSpeed;
         boostSpeed = moveSpeed * 1.45f;
         ogDelay = walkSFXDelay;
         runDelay = walkSFXDelay - .2f;
+        timeRunning = 0.0f;
 
     }
 
@@ -44,11 +50,26 @@ public class PlayerController : MonoBehaviour
         {
             moveSpeed = boostSpeed;
             walkSFXDelay = runDelay;
+            if (timeRunning > 3.0f && audioSource.clip != heavyBreathingSFX || !audioSource.isPlaying)
+            {
+                audioSource.Stop();
+                audioSource.clip = heavyBreathingSFX;
+                audioSource.Play();
+            }
+            timeRunning += Time.deltaTime;
         }
         else
         {
             moveSpeed = normalSpeed;
             walkSFXDelay = ogDelay;
+            if (audioSource.clip != regularBreathingSFX || !audioSource.isPlaying)
+            {
+                audioSource.Stop();
+                audioSource.clip = regularBreathingSFX;
+                audioSource.Play();
+            }
+            timeRunning = 0.0f;
+
         }
 
         input *= moveSpeed;

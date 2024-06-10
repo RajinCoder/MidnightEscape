@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -5394099751243634536}
   m_Layer: 0
   m_Name: BulletProjectile
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,3 +146,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06b9e9b9f94c3d54593760a4281750ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyDuration: 2

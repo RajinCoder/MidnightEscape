@@ -9,11 +9,12 @@ public class HideBed : MonoBehaviour
     Camera hidingCamera;
     bool isHiding = false;
     bool guiShow = false;
+    AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -36,6 +37,8 @@ public class HideBed : MonoBehaviour
                     hidingCamera = hit.collider.GetComponentInChildren<Camera>();
                     hidingCamera.enabled = true;
 
+                    audioSource.volume = .5f;
+
                     StartCoroutine(Wait());
                 }
             }
@@ -53,6 +56,8 @@ public class HideBed : MonoBehaviour
                 gameObject.GetComponent<MeshRenderer>().enabled = true;
                 // Change Camera
                 hidingCamera.enabled = false;
+
+                audioSource.volume = .8f;
 
                 isHiding = false;
             }
