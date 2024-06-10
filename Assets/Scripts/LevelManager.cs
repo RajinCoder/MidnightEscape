@@ -7,8 +7,9 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public Text gameText;
-     public static bool isGameOver = false;
+    public static bool isGameOver = false;
     public string nextLevel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +35,7 @@ public class LevelManager : MonoBehaviour
         gameText.text = "YOU WIN!";
         gameText.gameObject.SetActive(true);
 
-        if(!string.IsNullOrEmpty(nextLevel)) {
+        if (!string.IsNullOrEmpty(nextLevel)) {
             Invoke("LoadNextLevel", 2);
         }
     }

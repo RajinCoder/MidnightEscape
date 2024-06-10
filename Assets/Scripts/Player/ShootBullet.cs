@@ -6,6 +6,7 @@ public class ShootBullet : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public float bulletSpeed = 100;
+    public int bulletDamage = 20;
 
     // Start is called before the first frame update
     void Start()
